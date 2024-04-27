@@ -5,8 +5,6 @@ import Register from '../pages/Register'
 import Cards from '../pages/Cards'
 import Flowers from '../pages/Flowers'
 import Error from '../pages/Error'
-import Header from './Header'
-import Footer from './Footer'
 import Contact from '../pages/Contact'
 import Buy from '../pages/Buy'
 import Search from '../pages/Search'
@@ -26,7 +24,6 @@ import ModifyDef from '../pages/ModifyDef'
 const Router=()=>{
 
     return ( <BrowserRouter>
-                <Header/>
                     <Template>
                         <Routes>
                                 <Route exact path='/' element={<Home/>} />
@@ -47,7 +44,6 @@ const Router=()=>{
                                 <Route path='*' element={<Error/>} />
                         </Routes>
                     </Template>
-                <Footer/>
             </BrowserRouter>
             )
 }

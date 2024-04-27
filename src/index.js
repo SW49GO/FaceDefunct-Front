@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import Router from './components/Router'
 import ReactDOM from 'react-dom/client'
 import React from 'react'
-import './index.css'
+import './sass/style.css'
 const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
