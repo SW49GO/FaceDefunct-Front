@@ -6,10 +6,8 @@ import Forms from "../components/Forms"
 
 const Register= () =>{
     const [isOpen, setIsOpen] = useState(false)
-    console.log('isOpen:', isOpen)
  
     const handleRegister=async(data)=>{
-        console.log('data:', data)
         await api.signIn(data)
         setIsOpen(true)
     }
