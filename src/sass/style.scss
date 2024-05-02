@@ -277,7 +277,8 @@ main :is(tr, td, th) {
     & h3 {
         position: absolute;
         left: 50%;
-        top: 3rem;
+        top: 2rem;
+        font-size: 2.2rem;
         color: $white;
     }
     &__profil {
@@ -300,27 +301,27 @@ main :is(tr, td, th) {
             }
         }
         &-form {
-            width: 10rem;
-            height: 6rem;
-            position: relative;
-            top: 1rem;
-            left: 2rem;
-            border-radius: 1rem;
-            border: 0.2rem solid $secondary-color;
-            box-shadow: -2rem -2rem 4rem 1.5rem #49a0e8;
             &-photo {
-                width: 10rem;
-                height: 5.7rem;
+                width: 7.9rem;
+                height: 6rem;
+                position: relative;
+                top: 1rem;
+                left: 2rem;
+                border-radius: 1.1rem;
+                border: 0.2rem solid $secondary-color;
+                box-shadow: -2rem -2rem 4rem 1.5rem #49a0e8;
                 & img {
                     @include picture();
+                    object-fit: contain;
+                    border-radius: 0.9rem;
                 }
                 & input {
                     position: relative;
-                    left: -190%;
+                    left: -250%;
                 }
                 & svg {
-                    position: relative;
-                    top: -3rem;
+                    position: absolute;
+                    top: 5rem;
                     left: 93%;
                     color: $secondary-color;
                 }
@@ -328,10 +329,12 @@ main :is(tr, td, th) {
         }
     }
     &__link {
+        position: relative;
+        top: 1rem;
         display: flex;
         flex-direction: row-reverse;
         gap: 0.02rem;
-        :hover {
+        & a:hover {
             box-shadow: inset 0 0.25rem $secondary-color;
         }
     }
@@ -346,6 +349,25 @@ main :is(tr, td, th) {
     &__link a.activeMenu {
         box-shadow: inset 0 0 1rem 0.2rem #49a0e8 !important;
         border-top: 0.25rem solid $secondary-color;
+        &.activeDefunct {
+            border-radius: 0;
+        }
+    }
+    &__defunct {
+        position: relative;
+        &-subMenu {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            top: 8.5rem;
+            border-radius: 0 0 1rem 1rem;
+            overflow: hidden;
+            & a {
+                text-align: center;
+                top: 0;
+                border-radius: 0;
+            }
+        }
     }
 }
 .connexion {

@@ -90,14 +90,14 @@ export async function getInfos(id, token, idDef, ctrl, other) {
     }
 }
 
-export async function setFiles(id, defId, dest, token, file){
-// console.log('fileFETCH:', file)
+export async function setFiles(id, idDef, dest, token, file){
+console.log('fileFETCH:', file)
 // console.log('id:', id)
 // console.log('token:', token)
 
   const formData = new FormData()
     formData.append('id', id)
-    formData.append('defId', defId)
+    formData.append('idDef', idDef)
     formData.append('dest', dest)
     formData.append('image', file)
 

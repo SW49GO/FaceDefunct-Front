@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectAuth } from "../features/selector"
 const Home = () =>{
+    console.log('Home:')
     const auth = useSelector(selectAuth)
     return (
     <div className="home">

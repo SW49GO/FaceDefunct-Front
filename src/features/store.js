@@ -2,7 +2,7 @@ import { createSlice, configureStore} from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import storageSession from 'redux-persist/lib/storage/session'
-import { fetchInfos } from '../middlewares/thunks'
+import * as thunk from '../middlewares/thunks'
 
 const localStorageUser = {
     key: 'localStorageUser',
@@ -80,7 +80,7 @@ const userSlice = createSlice({
       state.defunctSelected =action.payload
       },
     updateUserInfos : (state, action)=>{
-      state.userInfos.photo = action.payload
+      state.userInfos[0].photo = action.payload
     },
     setAdminInfos : (state,action)=>{
       state.adminInfos = action.payload
@@ -88,20 +88,19 @@ const userSlice = createSlice({
     setListFriends : (state, action)=>{
       state.listFriends=action.payload
     },
-//   },
-//     extraReducers: (builder) => {
-//       builder
-//         .addCase(fetchInfos.pending, (state) => {
-//           state.loading = 'pending'
-//         })
-//         .addCase(fetchInfos.fulfilled, (state, action) => {
-//           state.loading = 'idle'
-//           state.userInfos = action.payload
-//         })
-//         .addCase(fetchInfos.rejected, (state, action) => {
-//           state.loading = 'idle'
-//           state.error = action.payload;
-//         })
+  },
+    extraReducers: (builder) => {
+      builder
+        .addCase(thunk.getInfosUser.fulfilled, (state, action) => {
+          state.loading = 'idle'
+          state.userInfos = action.payload
+        })
+        .addCase(thunk.initializeHeader.fulfilled, (state, action)=>{
+          state.loading = 'idle'
+        })
+        .addCase(thunk.saveFile.fulfilled, (state, ation)=>{
+          state.loading = 'idle'
+        })
     }
 })
 
