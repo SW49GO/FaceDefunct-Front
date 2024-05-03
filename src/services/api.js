@@ -120,6 +120,7 @@ console.log('fileFETCH:', file)
   }
 
   export async function updatePhoto(id, idDef, photo, token, ctrl) {
+    console.log('photo:', photo)
     // console.log('token:', token)
     // console.log('ctrl:', ctrl)
     //  console.log('id:', id)

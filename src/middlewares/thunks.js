@@ -63,7 +63,7 @@ export const saveFile = createAsyncThunk('userSlice/saveFile', async (data, thun
     if(pathName){
        console.log('pathName:', pathName)
       thunkAPI.dispatch(updateUserInfos(pathName))
-   // updatePhoto(id, 0, pathName, token, 'updatePhotoProfil')
+      api.updatePhoto(id, 0, pathName, token, 'updatePhotoProfil')
     }
   }catch(error){
     return error

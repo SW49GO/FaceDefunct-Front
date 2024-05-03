@@ -24,6 +24,7 @@ body {
     font-family: "Cambay", sans-serif;
 }
 main {
+    margin-left: -20%;
     text-align: center;
 }
 main :is(h1, h2, h3, h4, h5) {
@@ -367,6 +368,18 @@ main :is(tr, td, th) {
                 top: 0;
                 border-radius: 0;
             }
+            & p {
+                text-align: center;
+                background-color: $black;
+                color: $white;
+                border-bottom: 2px solid $secondary-color;
+            }
+        }
+        &-list {
+            text-align: center;
+            background-color: $black;
+            color: $white;
+            padding: 0.5rem 0;
         }
     }
 }
@@ -405,4 +418,29 @@ main :is(tr, td, th) {
     color: #fff;
     font-size: 2rem;
     align-items: center;
+}
+.createform {
+    margin-top: 2rem;
+    &__form,
+    &__affinity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 65%;
+        margin: 0 auto;
+        padding: 1.5rem;
+        background-color: $thirty-color;
+        border-radius: 1.25rem;
+        color: $white;
+        & input {
+            width: 15rem;
+            height: 2rem;
+        }
+        & input[type="radio"] {
+            width: 1rem;
+        }
+        &-card {
+            display: flex;
+        }
+    }
 }

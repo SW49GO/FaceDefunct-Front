@@ -21,6 +21,7 @@ const UserHeader = () =>{
     const numberFriends = useSelector(selectNumberFriends)
     const numberMessages = useSelector(selectNumberMessages)
     const defunctsList = useSelector(selectDefunctsList)
+    console.log('defunctsList:', defunctsList)
     const infosUser = useSelector(selectUserInfos)
     console.log('infosUser:', infosUser)
     const fileInputRef = useRef(null)
@@ -32,7 +33,9 @@ const UserHeader = () =>{
     const [isOpen, setIsOpen] = useState(false)
     console.log('isOpen:', isOpen)
     const toggleOpen =()=>{setIsOpen(!isOpen)}
+    // Class when submenu "fiche" is open
     const activeDefunct = isOpen ?'activeDefunct':''
+    // Define profil photo
     const image = infosUser[0].photo === "" ? './assets/site/noone.jpg': infosUser[0].photo 
 
     useEffect(()=>{
@@ -42,6 +45,11 @@ const UserHeader = () =>{
         }
     }, [id,token,dispatch, auth])
 
+    
+    /**
+     * Function to save picture profil user
+     * @param {event} e 
+     */
     const handleFileChange=(e)=>{
         const datas = {id:id, idDef:0, dest:'profil', token:token, file:e.target.files}
         dispatch(thunk.saveFile(datas))
@@ -59,6 +67,12 @@ const UserHeader = () =>{
             dispatch(setSelectedDef(selectedDef[0]))
             navigate('/modifyDef')
         }
+
+    // Activate icon if new friends
+    const icon_anim_f = numberFriends!==0 ? 'icon_anim':''
+    // Activate icon if new friends
+    const icon_anim_m = numberMessages!==0 ? 'icon_anim':''
+
     if(auth){
         return(
             <> 
@@ -75,12 +89,17 @@ const UserHeader = () =>{
                     </form>
                     </div>
                     <div className="userMenu__profil-service">
-                        <Link><FaUsers/><FaComment/></Link>
+                        <Link to={'/tchat'}>
+                            <FaUsers className={`${icon_anim_f}`}/>
+                        </Link>
+                        <Link>
+                            <FaComment className={`${icon_anim_m}`}/>
+                        </Link>
                     </div>
                 </div>
                 <div className="userMenu__link">
                     <div>
-                    <Link  className={activeMenuIndex === 0 ? 'activeMenu' : ''} onClick={() => setActiveMenuIndex(0)}>Accueil</Link>
+                    <Link to={'/homeUser'} className={activeMenuIndex === 0 ? 'activeMenu' : ''} onClick={() => setActiveMenuIndex(0)}>Accueil</Link>
                     </div>
                     <div>
                     <Link  className={activeMenuIndex === 1 ? 'activeMenu' : ''} onClick={() => setActiveMenuIndex(1)}>Rechercher</Link>
@@ -89,10 +108,10 @@ const UserHeader = () =>{
                     <Link  className={activeMenuIndex === 2 ? `activeMenu ${activeDefunct}` : ''} onClick={() => {setActiveMenuIndex(2); toggleOpen()}}>Fiches</Link>
                     {isOpen && 
                         <div className='userMenu__defunct-subMenu'>
-                            {defunctsList.length===0 && 
-                            <Link to={'/createForm'} onClick={()=>setIsOpen(false)}>Créer</Link>}
+                            <Link to={'/createForm'} onClick={()=>setIsOpen(false)}>Créer</Link>
+                            <p>Modifier :</p>
                             {defunctsList.length>0 &&
-                                <div className='user__list_defuncts'>
+                                <div className='userMenu__defunct-list'>
                                 { Object.entries(defunctsList).map(([key, item])=>(
                                 <p key={key} onClick={()=>{selectedDefunct(item.id)}}>{item.lastname} {item.firstname}</p>
                                 ))}
